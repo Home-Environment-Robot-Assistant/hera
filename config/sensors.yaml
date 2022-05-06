@@ -7,10 +7,10 @@ robot_sensors:
       type: sensor_msgs/LaserScan
     locals:
       node: locals
-      type: map/StringArray
-    people:
-      node: people
-      type: people/People
+      type: social_msgs/Locals
+    # people:
+    #   node: people
+    #   type: people/People
     camera:
       node: camera/rgb/image_color
       type: sensor_msgs/Image

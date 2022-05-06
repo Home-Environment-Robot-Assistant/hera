@@ -45,7 +45,9 @@ class Robot(AbstractAgent):
 
     def handle_question(self, req):
         if(req.question == 'know_places'):
-            return questionResponse(json.dumps(self.get_sensors('locals').strings))
+            locs = [loc.name for loc in self.get_sensors('locals').locals]
+            # rospy.loginfo(locs)
+            return questionResponse(json.dumps(locs))
         if(req.question == 'nearest_person'):
             p = self.get_sensors('people').people
             if(len(p) > 0):

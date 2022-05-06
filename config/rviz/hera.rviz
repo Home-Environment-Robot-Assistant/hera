@@ -51,10 +51,90 @@ Visualization Manager:
       Reference Frame: <Fixed Frame>
       Value: false
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        aaa:
+          Value: true
+        backrest_link:
+          Value: true
+        base:
+          Value: true
+        base_footprint:
+          Value: true
+        base_scan_back:
+          Value: true
+        base_scan_front:
+          Value: true
+        base_wheelBL:
+          Value: true
+        base_wheelBR:
+          Value: true
+        base_wheelFL:
+          Value: true
+        base_wheelFR:
+          Value: true
+        bin:
+          Value: true
+        door:
+          Value: true
+        elbow_lift_link:
+          Value: true
+        elbow_pan_link:
+          Value: true
+        end:
+          Value: true
+        gripper_left_end_link:
+          Value: true
+        gripper_left_link:
+          Value: true
+        gripper_right_end_link:
+          Value: true
+        gripper_right_link:
+          Value: true
+        head:
+          Value: true
+        inspection:
+          Value: true
+        kinect_one:
+          Value: true
+        kinect_one_depth:
+          Value: true
+        kinect_one_optical:
+          Value: true
+        locals:
+          Value: true
+        manip_base_link:
+          Value: true
+        manip_support_link:
+          Value: true
+        map:
+          Value: true
+        odom:
+          Value: true
+        shoulder_lift_link:
+          Value: true
+        shoulder_pan_link:
+          Value: true
+        table0:
+          Value: true
+        table1:
+          Value: true
+        torso:
+          Value: true
+        torso_sensor_plat:
+          Value: true
+        wrist_lift_link:
+          Value: true
+        wrist_pan_link:
+          Value: true
+        xtion:
+          Value: true
+        xtion_depth:
+          Value: true
+        xtion_optical:
+          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -62,9 +142,69 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        map:
+          locals:
+            aaa:
+              {}
+            bin:
+              {}
+            door:
+              {}
+            end:
+              {}
+            inspection:
+              {}
+            table0:
+              {}
+            table1:
+              {}
+          odom:
+            base_footprint:
+              base:
+                base_scan_back:
+                  {}
+                base_scan_front:
+                  {}
+                base_wheelBL:
+                  {}
+                base_wheelBR:
+                  {}
+                base_wheelFL:
+                  {}
+                base_wheelFR:
+                  {}
+                torso:
+                  backrest_link:
+                    {}
+                  head:
+                    {}
+                  manip_support_link:
+                    manip_base_link:
+                      shoulder_pan_link:
+                        shoulder_lift_link:
+                          elbow_pan_link:
+                            elbow_lift_link:
+                              wrist_pan_link:
+                                wrist_lift_link:
+                                  gripper_left_link:
+                                    gripper_left_end_link:
+                                      {}
+                                  gripper_right_link:
+                                    gripper_right_end_link:
+                                      {}
+                  torso_sensor_plat:
+                    kinect_one:
+                      kinect_one_depth:
+                        {}
+                      kinect_one_optical:
+                        {}
+                  xtion:
+                    xtion_depth:
+                      {}
+                    xtion_optical:
+                      {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -970,7 +1110,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 26.39275550842285
+      Distance: 27.137784957885742
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1

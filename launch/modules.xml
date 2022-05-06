@@ -62,6 +62,9 @@
 
     <include file="$(find hera)/launch/navigation/localization.xml" />
     <include file="$(find hera)/launch/navigation/planning.xml" />
+
+    <include file="$(find social_move_base)/launch/start.launch" />
+
   </group>
 
   <!-- manipulator -->
