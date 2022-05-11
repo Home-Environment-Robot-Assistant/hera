@@ -31,7 +31,7 @@ class Hear(AbstractAction):
         # for i in speech.choices:
         #     recognition = recognition.replace('<'+i.id+'>', i.values[0], 1)
 
-        if(recognition is not ''):
+        if(recognition != ''):
             robot.get_actuators().talk.execute("I hear: " + str(recognition))
 
     def confirm(self, recognition):
@@ -39,7 +39,7 @@ class Hear(AbstractAction):
         # for i in speech.choices:
         #     recognition = recognition.replace('<'+i.id+'>', i.values[0], 1)
 
-        if(recognition is not ''):
+        if(recognition != ''):
             self.get_actuators().talk.execute('Did you say: ' + str(recognition))
             self.get_actuators().talk.execute('is that correct?')
 
@@ -71,7 +71,7 @@ class Hear(AbstractAction):
         for i in speech.choices:
             recognition = recognition.replace('<'+i.id+'>', i.values[0], 1)
 
-        if(recognition is not ''):
+        if(recognition != ''):
             self.pub_vizbox_operator.publish(recognition)
             self.robot.add_log('Hear', recognition, color=LogColor.CYAN)
 

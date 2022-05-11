@@ -1,15 +1,18 @@
 #!/bin/bash
 
-apt-get install -y xterm
-apt-get install -y ros-melodic-teleop-twist-keyboard
-apt-get install -y ros-melodic-gmapping
-apt-get install -y ros-melodic-map-server
-apt-get install -y ros-melodic-move-base
-apt-get install -y ros-melodic-social-navigation-layers
-apt-get install -y ros-melodic-amcl
-apt-get install -y ros-melodic-fake-localization
-apt-get install -y ros-melodic-carrot-planner
-apt-get install -y ros-melodic-global-planner
-apt-get install -y ros-melodic-dwa-local-planner
-apt-get install -y ros-melodic-eband-local-planner
-apt-get install -y ros-melodic-teb-local-planner
+distribution=${1:-noetic} 
+
+apt-get install -y ros-$distribution-teleop-twist-keyboard
+apt-get install -y ros-$distribution-gmapping
+apt-get install -y ros-$distribution-map-server
+apt-get install -y ros-$distribution-move-base
+apt-get install -y ros-$distribution-social-navigation-layers
+apt-get install -y ros-$distribution-amcl
+apt-get install -y ros-$distribution-fake-localization
+apt-get install -y ros-$distribution-carrot-planner
+apt-get install -y ros-$distribution-global-planner
+apt-get install -y ros-$distribution-dwa-local-planner
+apt-get install -y ros-$distribution-eband-local-planner
+apt-get install -y ros-$distribution-teb-local-planner
+
+# sudo apt-get install python-enum34
