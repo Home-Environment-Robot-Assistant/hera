@@ -42,8 +42,9 @@
     <rosparam command="load" file="$(find hera)/config/actuators.yaml" />
 
     <!-- start agent -->
-    <node name="hera" pkg="hera" type="hera_node"
-      launch-prefix="xterm -title $(arg robot_name) -hold -e" />
+    <!-- <node name="hera" pkg="hera" type="hera_node"
+      launch-prefix="xterm -title $(arg robot_name) -hold -e" /> -->
+    <node name="hera" pkg="hera" type="hera_node" output="screen" />
 
     <!-- start robot -->
     <include file="$(find hera)/launch/robot.xml" >
