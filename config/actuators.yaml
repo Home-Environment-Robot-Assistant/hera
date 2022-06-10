@@ -28,6 +28,6 @@ robot_actuators:
       node: /map/save_local
       type: map/SaveLocal
     head:
-      comm: TOPIC
-      node: /head_topic/goal_pos
-      type: std_msgs/Float32MultiArray
+      comm: SERVICE
+      node: head_interface
+      type: hera_control/Head_service

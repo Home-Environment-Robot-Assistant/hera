@@ -18,7 +18,7 @@
 
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz" output="screen"
-    args="-d $(find hera_nav)/config/rviz/mapping.rviz" />
+    args="-d $(find hera)/config/rviz/mapping.rviz" />
 
   <!-- start slam_gmapping -->
   <node name="gmapping" pkg="gmapping" type="slam_gmapping" output="screen"
