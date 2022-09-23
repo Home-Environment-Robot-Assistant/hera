@@ -1,3 +1,5 @@
+from translate import Translator
+
 import actionlib
 import rospy
 
@@ -21,18 +23,23 @@ class Talk(AbstractAction):
         self.pub_vizbox_robot = rospy.Publisher('/robot_text', String, queue_size=80)
 
     def goal_callback(self, goal):
-        result = self.execute(goal.phrase)
+        result = self.execute(goal.phrase, goal.from_lang, goal.to_lang)
         self._as.set_succeeded(talkResult(result=result))
 
-    def execute(self, phrase):
+    def execute(self, phrase, from_lang="en", to_lang="en"):
+
+        translator= Translator(from_lang=from_lang, to_lang=to_lang)
+        translation = translator.translate(phrase)
+
         ''' Execute action talk(phrase) '''
-        self.robot.add_log('Talk', phrase, color=LogColor.CYAN)
-        self.pub_vizbox_robot.publish(phrase)
+        self.robot.add_log('Talk', translation, color=LogColor.CYAN)
+        self.pub_vizbox_robot.publish(translation)
 
         # create goal
         goal = TalkGoal()
         # set goal
-        goal.phrase = phrase
+        goal.phrase = translation
+        goal.lang = to_lang
         # talk
         result = self.robot.get_actuators().talk(goal)
         return 'success'
