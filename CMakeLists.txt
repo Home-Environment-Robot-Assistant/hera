@@ -65,6 +65,7 @@ catkin_python_setup()
    FILES
    pose.action
    goto.action
+   gotosocial.action
    gotopose.action
    talk.action
    hear.action

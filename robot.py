@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
 
 from agent.abstract_agent import AbstractAgent
 
 from actions.face import Face
 from actions.goto import Goto
+from actions.goto_social import GotoSocial
 from actions.gotopose import GotoPose
 from actions.hear import Hear
 from actions.move import Move
@@ -28,6 +28,7 @@ class Robot(AbstractAgent):
         ''' actions '''
         self.actions.add_action('face', Face(self))
         self.actions.add_action('goto', Goto(self))
+        self.actions.add_action('gotosocial', GotoSocial(self))
         self.actions.add_action('gotopose', GotoPose(self))
         self.actions.add_action('hear', Hear(self))
         self.actions.add_action('move', Move(self))
@@ -44,6 +45,7 @@ class Robot(AbstractAgent):
         pass
 
     def handle_question(self, req):
+        
         if(req.question == 'know_places'):
             locs = [loc.name for loc in self.get_sensors('locals').locals]
             # rospy.loginfo(locs)

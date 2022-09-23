@@ -19,6 +19,10 @@ robot_actuators:
       comm: ACTION
       node: move_base/goal
       type: move_base_msgs/MoveBaseActionGoal
+    gotosocial:
+      comm: ACTION
+      node: social_navigation/goal
+      type: social_move_base/SocialMoveBaseActionGoal
     follow:
       comm: ACTION
       node: social_navigation/goto/goal
