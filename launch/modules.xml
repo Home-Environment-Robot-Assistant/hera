@@ -1,18 +1,20 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="robot_name" default=""/>
-  <arg name="map_name"   default=""/>
-  <arg name="resources"  default=""/>
+  <arg name="robot_name"      default=""/>
+  <arg name="map_name"        default=""/>
+  <arg name="resources"       default=""/>
 
-  <arg name="hear"        default="true"/>
-  <arg name="talk"        default="true"/>
-  <arg name="map"         default="true"/>
-  <arg name="people"      default="true"/>
-  <arg name="navigation"  default="true"/>
-  <arg name="manipulator" default="true"/>
-  <arg name="objects"     default="true"/>
-  <arg name="head"        default="true"/>
+  <arg name="hear"            default="true"/>
+  <arg name="talk"            default="true"/>
+  <arg name="map"             default="true"/>
+  <arg name="people"          default="true"/>
+  <arg name="color_filter"    default="true"/>
+  <arg name="navigation"      default="true"/>
+  <arg name="manipulator"     default="true"/>
+  <arg name="objects"         default="true"/>
+  <arg name="head"            default="true"/>
+  <arg name="octomap"         default="true"/>
   
 
   <!-- hear -->
@@ -28,7 +30,7 @@
 
   <!-- talk -->
   <group if="$(arg talk)">
-    <node name="gtts_ros" pkg="gtts_ros" type="gtts_node.py">
+    <node name="gtts_ros" pkg="gtts_ros" type="gtts_node.py" output="screen">
       <param name="ONLINE" value="true" />
     </node>
   </group>
@@ -42,20 +44,29 @@
 
   <!-- people -->
   <group if="$(arg people)">
-    <node name="people" pkg="people" type="people_node.py" output="screen">
+    <!-- <node name="people" pkg="people" type="people_node.py" output="screen">
       <param name="clf" value="/home/robofei/catkin_ws/filename.joblib" />
       <param name="models" value="/home/robofei/openpose/models/" />
       <param name="image_color" value="/camera/rgb/image_raw" />
       <param name="image_cloud" value="/camera/depth/points" />
-    </node>
+    </node> -->
+    <node name ="save_face" pkg="hera_face" type="face_capture.py" output="screen"/>
+    <node name ="face_recog" pkg="hera_face" type="people.py" output="screen"/>
+    <node name ="face_check" pkg="hera_face" type="face_check.py" output="screen"/>
+
+  </group>
+
+  <!-- color_filter -->
+  <group if="$(arg color_filter)">
+    <node name ="color_filter" pkg="hera_face" type="blob_detection.py" output="screen"/>
   </group>
 
   <!-- navigation -->
   <group if="$(arg navigation)">
 
     <node pkg="hera_control" type="utils.py" name="robot_base_utils">
-      <param name="enable_clear_costmap" value="True"/>
-      <param name="enable_amcl_update" value="True"/>
+      <param name="enable_clear_costmap" value="true"/>
+      <param name="enable_amcl_update" value="true"/>
       <param name="clear_costmap_period" value="10"/>
       <param name="amcl_updates" value="10"/>
     </node> 
@@ -96,16 +107,23 @@
   <!-- head -->
   <group if="$(arg head)">
     <node name ="head" pkg="hera_control" type="head.py" output="screen"/>
-  </group>
+  </group> 
 
 <!-- objects -->
   <group if="$(arg objects)">
     <node name="dodo_detector_ros" pkg="dodo_detector_ros" type="detector.py" output="screen">
         <rosparam command="load" file="$(find dodo_detector_ros)/config/main_config.yaml"/>
-        <param name="image_topic" value="/kinect_one/rgb/image_raw" />
-        <param name="point_cloud_topic" value="/kinect_one/depth/points" />
+        <param name="image_topic" value="/kinect_one/rgb/image_raw" /> 
+        <param name="point_cloud_topic" value="/kinect_one/depth/points" /> 
     </node>
     <include file="$(find hera_objects)/launch/objects.launch" />
+  </group>
+
+  <!-- octomap -->
+  <group if="$(arg octomap)">
+    <include ns="move_group" file="$(find hera_moveit_config)/launch/sensor_manager.launch.xml">
+      <arg name="moveit_sensor_manager" value="hera" />
+    </include>
   </group>
 
   

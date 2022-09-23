@@ -12,19 +12,19 @@
   <!-- base -->
   <group if="$(arg enable_base)" >
     <!-- arduino -->
-    <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+    <node name="serial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
       <param name="port" value="/dev/base"/>
-      <param name="baud" value="38400"/>
+      <param name="baud" value="57600"/>
     </node>
 
     <!-- odom -->
     <node pkg="hera_control" type="odom.py" name="robot_base_odom"/>
-    <node pkg="hera_control" type="utils.py" name="robot_base_utils">
+    <!-- <node pkg="hera_control" type="utils.py" name="robot_base_utils">
       <param name="enable_clear_costmap" value="True"/>
       <param name="enable_amcl_update" value="True"/>
       <param name="clear_costmap_period" value="10"/>
       <param name="amcl_updates" value="10"/>
-    </node> 
+    </node>  -->
   </group>
 
   <!-- laser front -->
@@ -42,10 +42,10 @@
   <group if="$(arg enable_laser_back)" >
     <node name="hokuyo_node_back" pkg="hokuyo_node" type="hokuyo_node" >
       <remap from="scan" to="base_scan_back" />
-      <param name="port" value="/dev/ttyACM1"/>
+      <param name="port" value="/dev/back_laser"/>
       <param name="frame_id" value="base_scan_back"/>
-      <param name="min_ang" value="-1.45"/>
-      <param name="max_ang" value="1.45"/>
+      <param name="min_ang" value="-1.42"/>
+      <param name="max_ang" value="1.42"/>
     </node>
   </group>
 
@@ -57,11 +57,20 @@
     </include>
   </group>
 
+  <!-- Camera -->
+  <group if="$(arg enable_camera)" > 
+      <include file="$(find usb_cam)/launch/usb_cam-test.launch">
+      </include>
+  </group>
+
+
   <!-- kinect -->
   <group if="$(arg enable_kinect)" > 
       <include file="$(find freenect_launch)/launch/freenect.launch">
       	<arg name="camera" default="kinect_one" />
-      	<arg name="publish_tf" default="false" />
+        <!-- <arg name="rgb_frame_id" default="kinect_one_optical" />
+        <arg name="depth_frame_id" default="kinect_one_depth" /> -->
+      	<arg name="publish_tf" default="true" />
         <!--<arg name="device_id" default="1@X" /> -->
       </include>
   </group>

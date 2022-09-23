@@ -26,7 +26,8 @@
     <node
       name="bot"
       pkg="hera_telegram"
-      type="bot.py"/>
+      type="bot.py"
+      output="screen"/>
   </group>
 
 </launch>
