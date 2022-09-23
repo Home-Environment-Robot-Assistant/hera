@@ -1,7 +1,7 @@
 TebLocalPlannerROS:
 
   # Robot Configuration Parameters
-  acc_lim_x: 0.2 # 0.5 # Maximum translational acceleration of the robot in meters/sec^2
+  acc_lim_x: 0.6 # 0.5 # Maximum translational acceleration of the robot in meters/sec^2
   acc_lim_theta: 0.8 # 0.5 # Maximum angular acceleration of the robot in radians/sec^2
   max_vel_x: 0.3 # 0.4 # Maximum translational velocity of the robot in meters/sec
   max_vel_x_backwards: 0.2 # 0.2 # Maximum absolute translational velocity of the robot while driving backwards in meters/sec. See optimization parameter weight_kinematics_forward_drive
@@ -32,7 +32,7 @@ TebLocalPlannerROS:
   #     [-0.27, -0.26] ]
 
   # Goal Tolerance Parameters
-  xy_goal_tolerance: 0.05 # 0.2 # Allowed final euclidean distance to the goal position in meters
+  xy_goal_tolerance: 0.10 # 0.2 # Allowed final euclidean distance to the goal position in meters
   yaw_goal_tolerance: 0.10 # 0.2 # Allowed final orientation error in radians
   free_goal_vel: false # Remove the goal velocity constraint such that the robot can arrive at the goal with maximum speed
   complete_global_plan: false
