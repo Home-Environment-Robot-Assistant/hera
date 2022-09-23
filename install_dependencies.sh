@@ -16,3 +16,6 @@ apt-get install -y ros-$distribution-eband-local-planner
 apt-get install -y ros-$distribution-teb-local-planner
 
 # sudo apt-get install python-enum34
+
+pip install face_recognition
+pip install translate
